@@ -542,7 +542,7 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
         <div class="sidebar-card">
           <div class="sidebar-card-body">
             <div class="sub-row" onclick="showFeed(null)">
-              <div class="sub-row-icon" style="background:#FF450022;color:#FF4500">🏠</div>
+              <div class="sub-row-icon" style="background:#FF450022;color:#FF4500">⇧</div>
               <div><div class="sub-row-name">Home</div></div>
             </div>
           </div>
@@ -566,10 +566,7 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
         <div style="background:white;padding:16px;border-bottom:1px solid #eee;overflow:hidden">
           ${p.body.replace(/\n/g, '<br>')}
         </div>
-        <div style="background:white;padding:16px">
-          <div style="font-weight:bold;margin-bottom:12px">💬 Comments</div>
-          ${renderComments(p.comments)}
-        </div>
+        ${p.comments.length ? `<div style="background:white;padding:16px"><div style="font-weight:bold;margin-bottom:12px">Comments</div>${renderComments(p.comments)}</div>` : ''}
       `;
     }
 
@@ -580,7 +577,7 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
           <div class="body">
             <div class="meta">Posted by <b>${p.author}</b> · ${p.time}</div>
             <h2>${p.title}</h2>
-            <div class="foot">💬 ${p.comments.length} ${p.comments.length === 1 ? 'comment' : 'comments'} &nbsp; 🔗 Share</div>
+            <div class="foot">${p.comments.length} ${p.comments.length === 1 ? 'comment' : 'comments'} &nbsp; 🔗 Share</div>
           </div>
         </div>
         <div id="aexpand-${p.id}" style="display:none;margin-bottom:16px;border:1px solid #ccc;border-top:none;border-radius:0 0 12px 12px;overflow:hidden"></div>
@@ -664,7 +661,7 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
             <div class="body">
               <div class="meta">${subLink} · Posted by <b>${p.author}</b> · ${p.time}</div>
               <h2>${p.title}</h2>
-              <div class="foot">💬 ${p.comments.length} ${p.comments.length === 1 ? 'comment' : 'comments'} &nbsp; 🔗 Share</div>
+              <div class="foot">${p.comments.length} ${p.comments.length === 1 ? 'comment' : 'comments'} &nbsp; 🔗 Share</div>
             </div>
             ${thumb}
           </div>
@@ -693,10 +690,7 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
           ${p.images && p.images.length ? `<div style="display:grid;grid-template-columns:repeat(${Math.min(p.images.length,2)},1fr);gap:6px;margin-bottom:12px;border-radius:4px;overflow:hidden">${p.images.map(src => `<img src="${src}" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">`).join('')}</div>` : ''}
           <div style="overflow:hidden">${p.body.replace(/\n/g, '<br>')}</div>
         </div>
-        <div class="comments">
-          <div style="font-weight:bold;margin-bottom:12px">💬 Comments</div>
-          ${renderComments(p.comments)}
-        </div>
+        ${p.comments.length ? `<div class="comments"><div style="font-weight:bold;margin-bottom:12px">Comments</div>${renderComments(p.comments)}</div>` : ''}
       `;
       renderSidebar();
       window.scrollTo(0, 0);
