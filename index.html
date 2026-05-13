@@ -8,7 +8,7 @@
     body { font-family: sans-serif; background: #DAE0E6; margin: 0; }
     header { background: white; border-bottom: 1px solid #edeff1; padding: 8px 20px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10; }
     .logo { color: #FF4500; font-size: 20px; font-weight: 900; cursor: pointer; }
-    .user-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-left: auto; cursor: pointer; }
+    .user-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin-left: auto; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 15px; user-select: none; }
 
     /* Layout */
     .layout { max-width: 1100px; margin: 20px auto; padding: 0 20px; display: flex; gap: 24px; align-items: flex-start; }
@@ -79,7 +79,7 @@
 <body>
   <header>
     <div class="logo" onclick="showFeed(null)">JEDDIT</div>
-    <img class="user-avatar" onclick="showFeed('about')" src="images/jedditor-icon.png" alt="jed-2026" title="jed-2026">
+    <div class="user-avatar" id="user-avatar" onclick="showFeed('about')" title="jed-2026"></div>
   </header>
 
   <div class="layout">
@@ -416,7 +416,7 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
         author: 'jed-2026', flair: 'Current Jed',
         time: 'just now', votes: '5',
         title: "Let's talk.",
-        body: `<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px"><a href="mailto:JedediahBaker@gmail.com" style="color:#FF4500;font-weight:bold;font-size:15px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><span style="color:#1c1c1c">→</span> Email</a><a href="https://www.linkedin.com/in/jedediahbaker/" target="_blank" style="color:#FF4500;font-weight:bold;font-size:15px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><span style="color:#1c1c1c">→</span> LinkedIn</a><a href="JedediahBaker_resume-2026.pdf" target="_blank" style="color:#FF4500;font-weight:bold;font-size:15px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><span style="color:#1c1c1c">→</span> Resume</a></div>Always happy to connect.`,
+        body: `<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px"><a href="mailto:JedediahBaker@gmail.com" style="color:#FF4500;font-weight:bold;font-size:15px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><span style="color:#1c1c1c">→</span> Email</a><a href="https://www.linkedin.com/in/jedediahbaker/" target="_blank" style="color:#FF4500;font-weight:bold;font-size:15px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><span style="color:#1c1c1c">→</span> LinkedIn</a><a href="JedediahBaker_resume-2026.pdf" target="_blank" style="color:#FF4500;font-weight:bold;font-size:15px;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'"><span style="color:#1c1c1c">→</span> Resume</a></div>I hope you've enjoyed this! Looking forward to connecting.`,
         comments: []
       },
     ];
@@ -534,7 +534,7 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
           <div class="sidebar-card-body" style="font-size:12px;color:#888;line-height:1.8;padding:12px">
             <strong style="color:#1c1c1c">About JEDDIT</strong><br>
             The portfolio for my application for a Senior Content Designer role at Reddit in May, 2026.<br><br>
-            Code by Claude. Words by Jedediah Baker.
+            Icon by ChatGPT. Code by Claude.<br>Words &amp; work by Jedediah Baker.
           </div>
         </div>
       `;
@@ -687,6 +687,14 @@ These were the first things I wrote at The Idea Factory. I've always been a fan 
       if (openPostId) expandPost(openPostId);
       else if (posts.length === 1) expandPost(posts[0].id);
     }
+
+    // Avatar
+    (function() {
+      const el = document.getElementById('user-avatar');
+      el.style.background = '#FF4500';
+      el.style.color = 'white';
+      el.textContent = '^_^';
+    })();
 
     // Init
     function route() {
